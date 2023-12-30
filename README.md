@@ -11,3 +11,5 @@ Basic token based authorization example by using nginx + Go + Redis
 - `nginx-load-balancer`: If user is a valid user, the user can access access services throught load balancer
 - `go-service-1`: A hello world service
 - `go-service-2`: A hello world service
+  
+![resim](https://github.com/anilsenay/go-nginx-redis-auth-example/assets/1047345/15a5fd66-c45b-497e-9d91-146d05befe0a)
