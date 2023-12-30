@@ -4,5 +4,6 @@ toolchain go1.21
 
 use (
   ./go-auth
-  ./go-service
+  ./go-service-1
+  ./go-service-2
 )

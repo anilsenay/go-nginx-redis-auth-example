@@ -1,9 +1,22 @@
 version: "3"
 
 services:
-  goservice:
+  goservice1:
+    deploy:
+      mode: replicated
+      replicas: 3
     build:
-      context: go-service
+      context: go-service-1
+      target: builder
+    networks:
+      - mynetwork
+
+  goservice2:
+    deploy:
+      mode: replicated
+      replicas: 3
+    build:
+      context: go-service-2
       target: builder
     networks:
       - mynetwork
@@ -15,14 +28,23 @@ services:
     networks:
       - mynetwork
 
-  load-balancer:
+  web:
     image: nginx:latest
     ports:
       - "80:80"
     networks:
       - mynetwork
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx-web.conf:/etc/nginx/nginx.conf:ro
+
+  load-balancer:
+    image: nginx:latest
+    ports:
+      - "8080:8080"
+    networks:
+      - mynetwork
+    volumes:
+      - ./nginx-load-balancer.conf:/etc/nginx/nginx.conf:ro
 
   redis:
     image: redis:latest
